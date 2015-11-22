@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<filetypes>
+  <filetype type="image" described="图片文件" >
+    <hz>bmp</hz>
+    <hz>jpg</hz>
+    <hz>jpeg</hz>
+    <hz>jpe</hz>
+    <hz>png</hz>
+    <hz>gif</hz>
+    <hz>ico</hz>
+  </filetype>
+  <filetype type="tiff" described="tiff文件">
+    <hz>tif</hz>
+    <hz>tiff</hz>
+  </filetype>
+  <filetype type="word" described="Word文档">
+    <hz>doc</hz>
+    <hz>docx</hz>
+    <hz>docm</hz>
+    <hz>dotx</hz>
+    <hz>dotm</hz> 
+  </filetype>
+  <filetype type="ppt" described="Powerpoint文档">
+    <hz>pptx</hz>
+    <hz>ppt</hz>
+    <hz>pptm</hz>
+    <hz>potx</hz>
+    <hz>pot</hz>
+    <hz>ppsx</hz>
+    <hz>ppsm</hz>
+    <hz>pps</hz>
+  </filetype>
+  <filetype type="excel" described="Excel文档">
+    <hz>xlsx</hz>
+    <hz>xlsm</hz>
+    <hz>xlsb</hz>
+    <hz>xls</hz>
+    <hz>xltx</hz>
+    <hz>xltm</hz>
+    <hz>xlt</hz>
+  </filetype>
+  <filetype type="exe" described="可执行文件">
+    <hz>exe</hz>
+    <hz>bat</hz>
+    <hz>dll</hz>
+    <hz>com</hz>
+    <hz>msi</hz>
+  </filetype>
+  <filetype type="audio" discribed="音频文件">
+    <hz>mp3</hz>
+    <hz>aac</hz>
+    <hz>wav</hz>
+    <hz>wma</hz>
+    <hz>cda</hz>
+    <hz>flac</hz>
+    <hz>m4a</hz>
+    <hz>mid</hz>
+    <hz>mka</hz>
+    <hz>mpa</hz>
+    <hz>mpc</hz>
+    <hz>ofr</hz>
+    <hz>ogg</hz>
+    <hz>ra</hz>
+    <hz>wv</hz>
+    <hz>tta</hz>
+    <hz>ac3</hz>
+    <hz>dts</hz>
+  </filetype>
+  <filetype type="video" discribed="视频文件">
+    <hz>avi</hz>
+    <hz>rmvb</hz>
+    <hz>rm</hz>
+    <hz>asf</hz>
+    <hz>divx</hz>
+    <hz>mpg</hz>
+    <hz>mpeg</hz>
+    <hz>mpe</hz>
+    <hz>wmv</hz>
+    <hz>mp4</hz>
+    <hz>mkv</hz>
+    <hz>vob</hz>
+    <hz>mov</hz>
+  </filetype>
+  <filetype type="pdf" discribed="PDF文件">
+    <hz>pdf</hz>
+  </filetype>
+    <filetype type="psd" discribed="photoshop文件">
+    <hz>psd</hz>
+  </filetype>
+  <filetype type="rar" discribed="压缩文件">
+    <hz>rar</hz>
+    <hz>zip</hz>
+    <hz>7z</hz>
+    <hz>gz</hz>
+  </filetype>
+  <filetype type="access" discribed="Access文件">
+    <hz>mdb</hz>
+  </filetype>
+  <filetype type="txt" discribed="文本文件">
+	<hz>log</hz>
+    <hz>txt</hz>
+  </filetype>
+  <filetype type="config" discribed="配置信息文件">
+  	<hz>config</hz>
+	<hz>ini</hz>
+  </filetype>
+  <filetype type="iso" discribed="镜像文件">
+	<hz>iso</hz>
+	<hz>nrg</hz>
+  <hz>img</hz>
+  </filetype>
+  <filetype type="xml" discribed="xml文件">
+	<hz>xml</hz>
+  </filetype>
+  <filetype type="html" discribed="html文件">
+	<hz>html</hz>
+	<hz>htm</hz>
+	<hz>xhtml</hz>
+  </filetype>
+  <filetype type="js" discribed="js文件">
+	<hz>js</hz>
+  </filetype>
+  <filetype type="dat" discribed="dat文件">
+	<hz>dat</hz>
+  </filetype>
+  <filetype type="swf" discribed="swf文件">
+	<hz>swf</hz>
+  </filetype>
+  <filetype type="css" discribed="css文件">
+  <hz>css</hz>
+  </filetype>
+  <filetype type="cdr" discribed="CorelDraw文件">
+  <hz>cdr</hz>
+  </filetype>
+</filetypes>
