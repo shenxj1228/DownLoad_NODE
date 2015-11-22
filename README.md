@@ -11,7 +11,7 @@ var config={
 };
 ```
 # 文件类型区分文件 FileType.xml
-一个文件类型；每个 ** <hz> ** 代表一个后缀，** type ** 代表类型, ** type ** 的值 ** image ** 是 ** public\images\filetype ** 下的 ** image.png ** 
+其中的一个文件类型.每个 *<hz>* 代表一个后缀，*type* 代表类型, *type* 的值 *image* 是 *public\images\filetype* 下的 *image.png* 
 ```
   <filetype type="image" described="图片文件" >
       <hz>bmp</hz>
