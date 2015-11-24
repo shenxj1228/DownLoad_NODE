@@ -2,7 +2,7 @@
 var config = require('../config');
 var rootfolder = path.normalize(config.filepath);
 var fs = require('fs');
-var find = require('find');
+var fsfind = require('fs-find');
 var JSZip = require('jszip');
 var mime = require('mime');
 var cheerio = require('cheerio');
@@ -57,7 +57,7 @@ exports.getZipMaxSize = function(res) {
 /// <returns>{status: "success",rootfolder: config.filepath,content: {folders: newdirs,files: newfiles}}</returns>
 exports.getList = function(_path, res) {
 	_path = (_path == null || _path == '') ? rootfolder : new Buffer(_path, 'base64').toString();
-	var currentdir=_path.replace(rootfolder, "").split(path.sep);
+	var currentdir = _path.replace(rootfolder, "").split(path.sep);
 	fs.exists(_path, function(iexists) {
 		if (!iexists) {
 			res.send({
@@ -84,17 +84,17 @@ exports.getList = function(_path, res) {
 					newdirs.push(fp);
 				}
 			});
-			if(currentdir.length>4){
-				currentdir='...'+path.sep+currentdir.slice(-4).join(path.sep);
-			}else{
-				currentdir=currentdir.join(path.sep);
+			if (currentdir.length > 4) {
+				currentdir = '...' + path.sep + currentdir.slice(-4).join(path.sep);
+			} else {
+				currentdir = currentdir.join(path.sep);
 			}
 			res.send({
 				status: "success",
 				rootfolder: rootfolder,
 				currentdir: currentdir,
 				upperdir: new Buffer(path.dirname(_path)).toString('base64'),
-				itop:(path.dirname(_path) == path.dirname(rootfolder))? '1':'0' ,
+				itop: (path.dirname(_path) == path.dirname(rootfolder)) ? '1' : '0',
 				content: {
 					folders: newdirs,
 					files: newfiles
@@ -152,32 +152,33 @@ exports.searchfile = function(strsearch, res) {
 	var regex = new RegExp(strsearch, "gi");
 	var resultdir = [],
 		resultfile = [];
-	find
-		.eachdir(regex, rootfolder, function(dir) {
-			var statInfo = fs.statSync(dir);
-			var dir = new FileProperty(dir, 'folder', path.basename(dir), statInfo.size);
-			resultdir.push(dir);
-		})
-		.end(function() {
-			find
-				.eachfile(regex, rootfolder, function(file) {
-					var statInfo = fs.statSync(file);
-					var file = new FileProperty(file, getFileType(file), path.basename(file), statInfo.size);
-					resultfile.push(file);
-				})
-				.end(function() {
-					res.send({
-						status: "success",
-						rootfolder: config.filepath,
-						content: {
-							folders: resultdir,
-							files: resultfile
-						}
-					});
-				});
+	fsfind(rootfolder, {
+		dirs:true,
+		file: function(path, info) {
+			return regex.test(info.name);
+		}
+	}, function(err, results) {
+		results.forEach(function(el, index, array) {
+			if (el.stat.isDirectory() && el.file != rootfolder && el.file != rootfolder + path.sep&& regex.test(el.name)) {
+				resultdir.push(new FileProperty(el.file, 'folder', el.name, el.stat.size))
+			} else if (el.stat.isFile()) {
+				resultfile.push(new FileProperty(el.file, getFileType(el.file), el.name, el.stat.size));
+			}
+			
 		});
-};
+		res.send({
+			status: "success",
+			rootfolder: config.filepath,
+			content: {
+				folders: resultdir,
+				files: resultfile
+			}
+		});
+	});
 
+
+
+};
 /// <summary>
 /// 获取图片数据base64
 /// </summary>
@@ -185,7 +186,7 @@ exports.searchfile = function(strsearch, res) {
 /// <param name="res">response</param>
 /// <returns></returns>
 exports.getPreviewData = function(filepath, filetype, res) {
-	filepath=new Buffer(filepath,'base64').toString();
+	filepath = new Buffer(filepath, 'base64').toString();
 	fs.exists(filepath, function(iexists) {
 		if (!iexists) {
 			res.send({
@@ -232,7 +233,7 @@ exports.zipfiles = function(filepaths, res) {
 	var addfiles = [],
 		resarry = [];
 	filepaths.forEach(function(filepath) {
-		filepath=new Buffer(filepath,'base64').toString();
+		filepath = new Buffer(filepath, 'base64').toString();
 		addfiles.push(path.basename(filepath));
 	});
 	addfiles = addfiles.sort();
@@ -242,7 +243,7 @@ exports.zipfiles = function(filepaths, res) {
 		}
 	}
 	filepaths.forEach(function(filepath) {
-		filepath=new Buffer(filepath,'base64').toString();
+		filepath = new Buffer(filepath, 'base64').toString();
 		var _basename = path.basename(filepath);
 		var filename = filepath;
 		if (resarry.join(',').indexOf(_basename) > -1) {
@@ -287,7 +288,7 @@ exports.download = function(downloadfile, req, res, idelete) {
 		}
 	});   //express自带下载
 	*/
-	downloadfile=new Buffer(downloadfile,'base64').toString();
+	downloadfile = new Buffer(downloadfile, 'base64').toString();
 	var filename = path.basename(downloadfile);
 	var mimetype = mime.lookup(downloadfile); //匹配文件格式
 	var userAgent = (req.headers['user-agent'] || '').toLowerCase(); //去判断浏览器类型
