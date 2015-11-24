@@ -25,5 +25,6 @@ var config={
 ```
 # 运行
 ```
+npm install
 node app
 ```
